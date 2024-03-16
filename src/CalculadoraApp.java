@@ -7,46 +7,14 @@ public class CalculadoraApp {
         System.out.println("**** Aplicacion Calculadora ****");
         while (true) {
             // mostramos el menú
-            System.out.println("""
-                    1. Suma
-                    2. Resta
-                    3. Multiplicacion
-                    4. Division
-                    5. Salir
-                    """);
+            mostrarMenu();
             try {
-                System.out.print("Operacion a realizar? ");
+                //pedimos la opcion
                 var operacion = Integer.parseInt(consola.nextLine());
                 //revisar que este dentro de las opciones
                 if (operacion >= 1 && operacion <= 4) {
                     // pidiendo los operandos
-                    System.out.print("Proporciona valor operando1: ");
-                    var operando1 = Integer.parseInt(consola.nextLine());
-                    System.out.print("Proporciona valor operando2: ");
-                    var operando2 = Integer.parseInt(consola.nextLine());
-                    int resultado;
-
-                    switch (operacion) {
-                        case 1 -> { //suma
-                            resultado = operando1 + operando2;
-                            System.out.println("Resultado Suma: " + resultado);
-                        }
-                        case 2 -> { //Resta
-                            resultado = operando1 - operando2;
-                            System.out.println("Resultado Resta: " + resultado);
-                        }
-                        case 3 -> { //Multiplicacion
-                            resultado = operando1 * operando2;
-                            System.out.println("Resultado Multiplicacion: " + resultado);
-                        }
-                        case 4 -> { //Division
-                            resultado = operando1 / operando2;
-                            System.out.println("Resultado Division: " + resultado);
-                        }
-                        default -> {
-                            System.out.println("Opcion erronea -> " + operacion);
-                        }
-                    }
+                    ejecutarOperacion(operacion,consola);
                 } else if (operacion == 5) { //Salir
                     System.out.println("Hasta pronto...");
                     break;
@@ -60,4 +28,46 @@ public class CalculadoraApp {
             }
         }
     }
+
+    private static void mostrarMenu() {
+
+        System.out.println("""
+                1. Suma
+                2. Resta
+                3. Multiplicacion
+                4. Division
+                5. Salir
+                """);
+        System.out.print("Operacion a realizar? ");
+    }
+
+    private static void ejecutarOperacion(int operacion, Scanner consola) {
+        System.out.print("Proporciona valor operando1: ");
+        var operando1 = Double.parseDouble(consola.nextLine());
+        System.out.print("Proporciona valor operando2: ");
+        var operando2 = Double.parseDouble(consola.nextLine());
+        double resultado;
+
+        switch (operacion) {
+            case 1 -> { //suma
+                resultado = operando1 + operando2;
+                System.out.println("Resultado Suma: " + resultado);
+            }
+            case 2 -> { //Resta
+                resultado = operando1 - operando2;
+                System.out.println("Resultado Resta: " + resultado);
+            }
+            case 3 -> { //Multiplicacion
+                resultado = operando1 * operando2;
+                System.out.println("Resultado Multiplicacion: " + resultado);
+            }
+            case 4 -> { //Division
+                resultado = operando1 / operando2;
+                System.out.println("Resultado Division: " + resultado);
+            }
+            default -> System.out.println("Opcion erronea -> " + operacion);
+
+        }
+    }
+
 }
